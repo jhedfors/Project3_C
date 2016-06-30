@@ -1,0 +1,40 @@
+<div ng-controller="usersController as UC">
+    <a href="#/">Home</a> | <a href ng-click="UC.logout()">Logout</a>
+</div>
+<div ng-controller="dashboardController as DC">
+  <h4>Welcome, {{DC.activeUser.name}}!</h4>
+  <p>
+    <form name='new_task'>
+      <input type="text" name="title" ng-model="DC.title" ng-minlength='5' required placeholder="Title">
+      <input type="text" name="description" ng-model="DC.description" ng-minlength='10' required placeholder="Description">
+      <select ng-model="DC.tagged" name='tagged' placeholder='select'>
+        <option disabled selected value> -- select -- </option>
+        <option  ng-repeat="user in DC.users | filter: '!{{DC.activeUser._name}}'" value="{{user._id}}" ng-bind="user.name"></option>
+      </select>
+      <button ng-click="DC.create()">Add to List</button>
+    </form>
+    <div ng-messages="DC.new_task.title.$error">
+      <p ng-message="required">The question is required.</p>
+      <p ng-message="minlength">Minumum length is 5 characters.</p>
+    </div>
+    <div ng-messages="DC.new_task.description.$error">
+      <p ng-message="required">The question is required.</p>
+      <p ng-message="minlength">Minumum length is 10 characters.</p>
+    </div>
+  </p>
+  <p>
+    Before I die I want to:
+  </p>
+  <p ng-repeat="(i,task) in DC.tasks">
+      <input type="checkbox" ng-click="DC.toggle(task._id)"  ng-checked="task.complete">
+    {{ task.creator }} | {{task.title}} - {{task.description}} - {{task.createdAt  | date : format : timezone }}
+  </p>
+  <p>
+    List of other users (Click to view profile)
+  </p>
+  <p ng-repeat="user in DC.users">
+    <span ng-if="user._id !== activeUser._id">
+      <a href="#/user/{{user._id}}">{{user.name}}</a>
+    </span>
+  </p>
+</div>
