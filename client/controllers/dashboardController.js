@@ -18,16 +18,15 @@ myApp.controller('dashboardController',function(taskFactory,userFactory,$locatio
     })
   }
   getTasks(self.activeUser._id)
-
   var getUsers = function(){
     userFactory.index(function(questions_from_factory){
       self.users = questions_from_factory.filter(function(item) {
           return item.name !== self.activeUser.name;
-      });
+      })
     })
   }
   getUsers()
-
+  console.log(self.users);
   self.create = function(){
     var new_task = {creator: self.activeUser.name,_creator: self.activeUser._id, title: self.title, description: self.description, complete:false, tagged: self.tagged}
     taskFactory.create(new_task,function(){

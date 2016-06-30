@@ -7,7 +7,6 @@ var user = mongoose.model('User', userSchema)
 
 var taskSchema = mongoose.Schema({
   title:{type:String, required:true, minlength:5},
-  creator:{type:String},
   _creator:{type:mongoose.Schema.Types.ObjectId, ref: 'User'},
   description:{type:String, required:true, minlength:10},
   complete:{type:Boolean}

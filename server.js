@@ -3,7 +3,6 @@ var express = require('express');
 path = require('path');
 var bodyParser = require('body-parser');
 mongoose = require('mongoose');
-
 //setup APP
 app = express();
 app.use(bodyParser.json());

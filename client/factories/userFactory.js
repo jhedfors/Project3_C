@@ -3,7 +3,6 @@ myApp.factory('userFactory', function($http,$location){
   var factory = {}
   var users = []
   self.activeUser = '';
-
   factory.index = function(callback){
     $http.get('/users').success(function(questions_from_db){
       callback(questions_from_db)
@@ -11,28 +10,15 @@ myApp.factory('userFactory', function($http,$location){
     })
   }
   factory.show = function(name,callback){
-    console.log('name in factory', name);
     $http.get("/user/"+ name).success(function(data_from_db){
-      // current_question = data_from_db
-      console.log(data_from_db);
       callback(data_from_db)
-
     })
   }
-
   factory.show_id = function(id,callback){
-    console.log('id in factory', id);
     $http.get("/user_id/"+ id).success(function(data_from_db){
-      // current_question = data_from_db
-      console.log(data_from_db);
       callback(data_from_db)
-
     })
   }
-
-
-
-
   factory.getActiveUser = function(callback){
     callback(self.activeUser)
   }

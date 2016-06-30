@@ -1,5 +1,5 @@
 <div ng-controller="usersController as UC">
-    <a href="#/">Home</a> | <a href ng-click="UC.logout()">Logout</a>
+    <a href="#/dashboard">Home</a> | <a href ng-click="UC.logout()">Logout</a>
 </div>
 <div ng-controller="dashboardController as DC">
   <h4>Welcome, {{DC.activeUser.name}}!</h4>
@@ -27,7 +27,7 @@
   </p>
   <p ng-repeat="(i,task) in DC.tasks">
       <input type="checkbox" ng-click="DC.toggle(task._id)"  ng-checked="task.complete">
-    {{ task.creator }} | {{task.title}} - {{task.description}} - {{task.createdAt  | date : format : timezone }}
+    {{ task._creator.name }} | {{task.title}} - {{task.description}} - {{task.createdAt  | date : format : timezone }}
   </p>
   <p>
     List of other users (Click to view profile)

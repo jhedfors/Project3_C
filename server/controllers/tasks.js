@@ -8,7 +8,6 @@ module.exports = (function(){
       })
     },
     create: function(request, response){
-      // console.log('request', request);
       var new_task = new Task(request.body)
       new_task.save(function(err){
         if(err){
@@ -30,7 +29,6 @@ module.exports = (function(){
                   user_tagged.save(function(err){
                     if (err) response.json(err)
                     else response.json({success:true})
-
                   })
                 })
               }

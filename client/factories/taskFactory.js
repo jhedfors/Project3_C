@@ -15,11 +15,9 @@ myApp.factory('taskFactory', function($http,$location){
       })
     }else callback({status:false})
   }
-
   factory.show = function(id,callback){
     console.log('id in factory', id);
     $http.get("/user/"+ id).success(function(data_from_db){
-      // current_question = data_from_db
       callback(data_from_db)
     })
   }
@@ -29,6 +27,5 @@ myApp.factory('taskFactory', function($http,$location){
       callback()
     })
   }
-
   return factory
 })

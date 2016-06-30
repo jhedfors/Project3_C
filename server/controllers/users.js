@@ -17,11 +17,22 @@ module.exports = (function(){
     },
     show_id: function(request, response){
       console.log('params', request.params.id);
-      User.findOne({_id:request.params.id}).populate('_tasks _tasks._creator').exec(function(err,results){
+      User.findOne({_id:request.params.id})
+      .populate('_tasks')
+      .populate({ path : '_tasks', populate : { path : '_creator' } })
+      .exec(function(err,results){
         console.log('findOneUser', results);
         response.json(results)
       })
     },
+
+
+
+
+
+
+
+
     create: function(request, response){
       console.log('server user create', request);
       var user = new User(request.body)
